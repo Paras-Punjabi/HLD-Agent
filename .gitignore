@@ -1,0 +1,8 @@
+.venv
+.env
+app.db
+.vscode
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
