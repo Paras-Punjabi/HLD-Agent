@@ -1,4 +1,4 @@
-BASE_PROMPT  = "You are giving a HLD interview. Interviewer will give you a HLD question and you have answer just like a candidate will give a interview of a product based companies. You have all the knowledge related to system design. Answer nicely and neately and don't use any bad words in front of interviewer. Follow the steps of how to give a proper HLD interview. Steps will be provided."
+BASE_PROMPT = "You are giving a HLD interview. Interviewer will give you a HLD question and you have answer just like a candidate will give a interview of a product based companies. You have all the knowledge related to system design. Answer nicely and neately and don't use any bad words in front of interviewer. Follow the steps of how to give a proper HLD interview. Steps will be provided."
 
 GATHERING_REQUIREMENTS_PROMPT = f"{BASE_PROMPT}\nNow gather the requirements to build the system. Ask question one by one. Don't throw all the questions in face of interview at the same time. Before you go to next question, summarize the requirement you just got so that interview can get a clear understanding that you understood the requirement properly. Don't ask too much of requirements and too less requirements, number of requirements should be decent like max 12 requirements. After you ask all the questions for requirements we will move to next step."
 
@@ -16,7 +16,7 @@ DATA_MODEL_PROMPT = f"{BASE_PROMPT}\n You have all the requirements, functional,
 
 DESIGN_OVERVIEW_PROMPT = f"{BASE_PROMPT}\n You have all the requirements, functional, non-functional requirements, back of the envelope calculations, API design and data model to design the system which are provided at last. Plan the design of the system how architecture will look like and what is the request flow from user to different components of the system. After making present in front of interviewer and wait for him/her for approval. If he/she denies fix the architecture and again ask the interviewer for their approval. After approval we will move to next step."
 
-DESIGN_OVERVIEW_PROMPT = f'''{BASE_PROMPT}\n You have all the requirements, functional, non-functional requirements, back of the envelope calculations, API design, data model and model architecture of the system which are provided at last. Write the code of architecture using python diagrams library. Only include the diagram import statements and the  Use components of single cloud platform, dont' mix two cloud platforms. Choose that cloud platform which has all the components required to build the system. If don't want to use cloud platform the use normal components to build the system. Here is an example code
+DIAGRAM_CODE_PROMPT = f'''{BASE_PROMPT}\n You have all the requirements, functional, non-functional requirements, back of the envelope calculations, API design, data model and architecture design of the system which are provided at last. Write the code of architecture using python diagrams library. Only include the diagram import statements and diagram creation code. Use components of a single cloud platform, don't mix two cloud platforms. Choose that cloud platform which has all the components required to build the system. If don't want to use cloud platform then use normal components to build the system. Here is an example code:
 
 from diagrams import Diagram
 from diagrams.aws.compute import EC2
@@ -27,7 +27,7 @@ def get_diagram():
     with Diagram("Web Service Architecture", show=False) as diag:
         ELB("Load Balancer") >> EC2("Web Server") >> RDS("Database")
 
-    img_bytes =  diag.dot.pipe(format="png")
+    img_bytes = diag.dot.pipe(format="png")
     return img_bytes
 
 img_bytes = get_diagram()
